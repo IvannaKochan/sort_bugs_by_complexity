@@ -45,8 +45,8 @@ public:
 
 #define Max_elements 10
 
-string Company_name;
-string Need_status = "RESOLVED";
+std::string Company_name;
+std::string Need_status = "RESOLVED";
 
 //----------------------------------------------------
 class Back_Log {
@@ -73,11 +73,11 @@ public:
     //----------------------------------------------------
     //void Fill_element(int sev,string dead , string Status, string assignee){
     void Fill_element(void) {
-        Bug Temp_Bug1(100, "13.11.2022", "RESOLVED", "FIRST_COMPANY");
+        Bug Temp_Bug1(4, "13.11.2022", "RESOLVED", "FIRST_COMPANY");
         Bug Temp_Bug2(55, "15.11.2022", "NOT_RESOLVED", "SECOND_COMPANY");
         Bug Temp_Bug3(90, "13.11.2022", "RESOLVED", "FIRST_COMPANY");
         Bug Temp_Bug4(5, "15.11.2022", "NOT_RESOLVED", "SECOND_COMPANY");
-        Bug Temp_Bug5(80, "13.11.2022", "RESOLVED", "FIRST_COMPANY");
+        Bug Temp_Bug5(150, "13.11.2022", "RESOLVED", "FIRST_COMPANY");
         Bug Temp_Bug6(35, "15.11.2022", "RESOLVED", "SECOND_COMPANY");
         Bug Temp_Bug7(20, "13.11.2022", "RESOLVED", "FIRST_COMPANY");
         Bug Temp_Bug8(15, "15.11.2022", "NOT_RESOLVED", "SECOND_COMPANY");
@@ -98,7 +98,7 @@ public:
 
     };
     //----------------------------------------------------
-    void Sorting() {
+    void Sorting(void) {
         int length = sizeof(Bugs) / sizeof(Bugs[0]);
 
         for (int i = 0; i < length - 1; i++) {
@@ -109,15 +109,25 @@ public:
             };
         };
 
-
-
-        Bugs array[Max_elements];
-        int j=0;
-        for (int i = 0; i < Max_elements; i++) {
-            if ((Company_name == Bugs[i].Get_assignee()) && (Bugs[i].Get_status() == Need_status))
-                array[j++]= Bugs[i];
-        };
     };
 };
 
 
+
+int main() {
+
+    cout << "\n======= Inicialization Section =================" << endl;
+    Back_Log BB;
+    BB.Fill_element();
+    cout << "\n======= Printing Section =======================" << endl;
+
+    Company_name = "FIRST_COMPANY";
+
+    BB.Print();
+    cout << "\n========= Sorting Section ======================" << endl;
+
+    BB.Sorting();
+    BB.Print();
+    cout << "=================================================="<<endl;
+    return 0;
+};
