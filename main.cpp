@@ -7,72 +7,70 @@ class Bug {
 private:
     int severty;
     string deadline;
-    string Status;
+    string status;
     string assignee;
 public:
     Bug() {
         severty = 0;
         deadline = "00.00.0000";
-        Status = "NOT_RESOLVED";
+        status = "NOT_RESOLVED";
         assignee = "";
 
     }
-    Bug(int sev, string dead, string Status, string assignee1) {
+    Bug(int sev, string dead, string status, string assignee1) {
         severty = sev;
         deadline = dead;
-        this->Status = Status;
+        this->status = status;
         assignee = assignee1;
     }
-    int Get_severty() {
+    int get_severty() {
         return severty;
     }
-    string Get_deadline() {
+    string get_deadline() {
         return deadline;
     }
-    string Get_status() {
-        return Status;
+    string get_status() {
+        return status;
     }
-    string Get_assignee() {
+    string get_assignee() {
         return assignee;
     }
-    void Information() {
-        cout << "Severty " << severty << endl;
+    void print_information_about_b() {
+        cout << "severty " << severty << endl;
         cout << "deadline " << deadline << endl;
         cout << "assigne " << assignee << endl;
     }
 
 };
 
-#define Max_elements 10
+#define max_elements 10
 
-std::string Company_name;
-std::string Need_status = "RESOLVED";
+std::string company_name;
+std::string need_status = "RESOLVED";
 
 //----------------------------------------------------
-class Back_Log {
+class BackLog {
 
 public:
-    Bug Bugs[Max_elements];
+    Bug Bugs[max_elements];
     Bug Bug_temp;
     //----------------------------------------------------
-    Back_Log()
-    {
+    BackLog(){
 
-        int i = 0;
-        for (i = 0; i < Max_elements; i++) {
+        for (int i = 0; i < max_elements; i++) {
             Bugs[i] = Bug_temp;
         };
     };
     //----------------------------------------------------
-    void Print(void) {
-        for (int i = 0; i < Max_elements; i++) {
-            if ((Company_name == Bugs[i].Get_assignee()) && (Bugs[i].Get_status() == Need_status))
-                Bugs[i].Information();
+    void find_and_print_bugs_which_need_status(void){
+        for (int i = 0; i < max_elements; i++) {
+            if ((company_name == Bugs[i].get_assignee()) && (Bugs[i].get_status() == need_status))
+                Bugs[i].print_information_about_b();
         };
     };
     //----------------------------------------------------
-    //void Fill_element(int sev,string dead , string Status, string assignee){
-    void Fill_element(void) {
+    //void Fill_element(int sev,string dead , string status, string assignee){
+    void fill_information_about_bugs(void) {
         Bug Temp_Bug1(4, "13.11.2022", "RESOLVED", "FIRST_COMPANY");
         Bug Temp_Bug2(55, "15.11.2022", "NOT_RESOLVED", "SECOND_COMPANY");
         Bug Temp_Bug3(90, "13.11.2022", "RESOLVED", "FIRST_COMPANY");
@@ -98,12 +96,12 @@ public:
 
     };
     //----------------------------------------------------
-    void Sorting(void) {
+    void SortingBugsBySeverty(void) {
         int length = sizeof(Bugs) / sizeof(Bugs[0]);
 
         for (int i = 0; i < length - 1; i++) {
             for (int j = length - 1; j > i; j--) {
-                if (Bugs[j - 1].Get_severty() < Bugs[j].Get_severty()) {
+                if (Bugs[j - 1].get_severty() < Bugs[j].get_severty()) {
                     std::swap(Bugs[j - 1], Bugs[j]);
                 };
             };
@@ -117,17 +115,17 @@ public:
 int main() {
 
     cout << "\n======= Inicialization Section =================" << endl;
-    Back_Log BB;
-    BB.Fill_element();
+    BackLog BB;
+    BB.fill_information_about_bugs();
     cout << "\n======= Printing Section =======================" << endl;
 
-    Company_name = "FIRST_COMPANY";
+    company_name = "FIRST_COMPANY";
 
-    BB.Print();
+    BB.find_and_print_bugs_which_need_status();
     cout << "\n========= Sorting Section ======================" << endl;
 
-    BB.Sorting();
-    BB.Print();
+    BB.SortingBugsBySeverty();
+    BB.find_and_print_bugs_which_need_status();
     cout << "=================================================="<<endl;
     return 0;
 };
